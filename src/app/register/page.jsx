@@ -15,7 +15,7 @@ const Page = () => {
         // You can perform any further actions here, such as submitting the data to an API
     };
     return (
-        <>
+        <section className="w-[1800px]">
             <div className="min-h-screen flex justify-center items-center">
                 <div className="md:w-1/2 px-28">
                     <div className="pb-10">
@@ -62,7 +62,7 @@ const Page = () => {
                                     className="p-2 w-full rounded-[8px] border"
                                     type="email"
                                     {...register("email", {required: "Email is required"})}
-                                    placeholder="Email"
+                                    placeholder="info@xyz.com"
                                 />
                             </div>
                             <div className="relative z-0 w-full mb-5 group">
@@ -92,7 +92,7 @@ const Page = () => {
                                     className="p-2 w-full rounded-[8px] border"
                                     type="password"
                                     {...register("password", {required: "Password is required"})}
-                                    placeholder="•••••••••••"
+                                    placeholder="xxxxxxxxxxxx"
                                 />
                             </div>
                             <div className="relative z-0 w-full mb-5 group">
@@ -103,7 +103,7 @@ const Page = () => {
                                     className="p-2 w-full rounded-[8px] border"
                                     type="password"
                                     {...register("confirmPassword", {required: "Confirm Password is required"})}
-                                    placeholder="•••••••••••"
+                                    placeholder="xxxxxxxxxxxx"
                                 />
                             </div>
                         </div>
@@ -125,7 +125,7 @@ const Page = () => {
                 </div>
             </div>
 
-        </>
+        </section>
     );
 };
 

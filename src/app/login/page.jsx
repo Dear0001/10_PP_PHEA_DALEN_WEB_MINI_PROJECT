@@ -8,7 +8,7 @@ import ImgLogin from "../../../public/assets/icons/login.svg";
 const Page = () => {
 
     return (
-        <>
+        <section className="w-[1800px]">
             <div className="absolute pt-40 px-40">
                 <Image
                     width={175}
@@ -93,7 +93,7 @@ const Page = () => {
                 </div>
             </div>
 
-        </>
+        </section>
     );
 };
 
