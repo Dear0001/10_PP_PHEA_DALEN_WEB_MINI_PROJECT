@@ -1,12 +1,25 @@
+"use client"
 import React from 'react';
 import Image from "next/image";
-import {useForm} from "react-hook-form";
 import Logo from "../../../public/assets/icons/logo.svg";
 import Link from "next/link";
 import ImgLogin from "../../../public/assets/icons/login.svg";
+import {signIn} from "next-auth/react";
 
-const Page = () => {
-
+const LoginPage = () => {
+    // define handle login
+    async function handleLogin(userInfo){
+        //define structure object
+        const newUserInfo = {
+            email: userInfo.get('email'),
+            password: userInfo.get('password')
+        }
+        const res = signIn('credentials', {
+            redirect: false,
+            ...newUserInfo
+        })
+    }
+//call next auth service and passing " newUserInfo "
     return (
         <section className="w-[1800px]">
             <div className="absolute pt-40 px-40">
@@ -25,7 +38,7 @@ const Page = () => {
             <div className="min-h-screen flex justify-center items-center">
                 <div className="md:w-1/2 px-48">
                     <h2 className="font-bold text-3xl text-[#002D74]">Login</h2>
-                    <form action="" className="flex flex-col gap-6">
+                    <form action={handleLogin} className="flex flex-col gap-6">
                         <input className="p-2 mt-8 rounded-[8px] border" type="email" name="email" placeholder="Email"/>
                         <div className="relative">
                             <input className="p-2 rounded-[8px] border w-full" type="password" name="password"
@@ -97,4 +110,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default LoginPage;

@@ -5,15 +5,27 @@ import Image from "next/image";
 import Logo from "../../../public/assets/icons/logo.svg";
 import ImgSignUp from "../../../public/assets/icons/sign-up.svg";
 import Link from "next/link";
+import {registerUser} from "@/services/auth.service";
+import {useRouter} from "next/router";
 
 const Page = () => {
-    const { handleSubmit, register } = useForm(); // Initialize useForm hook
+    const router = useRouter();
+    const {
+        handleSubmit,
+        formState: {errors},
+        register
+        } = useForm();
 
     // Function to handle form submission
-    const handleUserRegister = (data) => {
-        console.log(data); // Log form data object to the console
-        // You can perform any further actions here, such as submitting the data to an API
+    const handleUserRegister = async (data) => {
+        console.log(data);
+        await registerUser(data);
+        // // router.push("/login");
+        // router.push("/login");
     };
+
+
+
     return (
         <section className="w-[1800px]">
             <div className="min-h-screen flex justify-center items-center">
