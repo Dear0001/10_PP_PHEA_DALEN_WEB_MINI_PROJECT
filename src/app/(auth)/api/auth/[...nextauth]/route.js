@@ -1,34 +1,29 @@
 import nextAuth from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
-import {loginService} from "@/services/auth.service";
-import {session} from "next-auth/core/routes";
+import { loginService } from "@/services/auth.service";
+
 export const authOptions = {
     providers: [
         //login by email and password
         CredentialsProvider({
-            async authorize(userInfo) {
-                //define object structure
-                const newUserInfo = {
-                    email: userInfo.email,
-                    password: userInfo.password
-                };
-                //call login services
-                const login = await loginService(newUserInfo);
-                console.log("Login : ", login);
+            async authorize(credentials) {
+                const { email, password } = credentials;
+                const login = await loginService({ email, password });
+                console.log("Login: ", login);
+                return login.payload; // Assuming payload contains user info
             },
         })
     ],
+    //use to set token into cookies
     callbacks: {
-        async jwt({ token, user }){
+        async jwt({ token, user }) {
             return { ...token, user };
         },
         async session({ token, user }) {
-            session.user = token;
-            return session;
+            return { user, ...token };
         }
     }
-
 }
 
-const handler = nextAuth(authOptions)
-export {handler as GET, handler as POST}
+const handler = nextAuth(authOptions);
+export { handler as GET, handler as POST };
