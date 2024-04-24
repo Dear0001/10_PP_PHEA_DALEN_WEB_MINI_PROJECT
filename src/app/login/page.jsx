@@ -25,6 +25,7 @@ const LoginPage = () => {
         console.log("res login", res)
         if(res.ok){
             console.log("res login", res)
+            router.push("/dashboard")
         }
     }
     //define visibility password
