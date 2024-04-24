@@ -5,25 +5,19 @@ import Image from "next/image";
 import Logo from "../../../public/assets/icons/logo.svg";
 import ImgSignUp from "../../../public/assets/icons/sign-up.svg";
 import Link from "next/link";
-import {registerUser} from "@/services/auth.service";
-import {useRouter} from "next/router";
+import signupAction from "@/action/signupAction";
 
 const Page = () => {
-    const router = useRouter();
     const {
         handleSubmit,
         formState: {errors},
-        register
-        } = useForm();
+        register,
+    } = useForm();
 
-    // Function to handle form submission
     const handleUserRegister = async (data) => {
         console.log(data);
-        await registerUser(data);
-        // // router.push("/login");
-        // router.push("/login");
+        await signupAction(data);
     };
-
 
 
     return (
@@ -39,7 +33,7 @@ const Page = () => {
                         />
                     </div>
                     <form className="max-w-full mx-auto"
-                          onSubmit={handleSubmit(handleUserRegister)} // Pass handleUserRegister to handleSubmit
+                          onSubmit={handleSubmit(handleUserRegister)}
                     >
                         <div className="grid md:grid-cols-2 md:gap-6">
                             <div className="relative z-0 w-full mb-5 group">
@@ -49,7 +43,7 @@ const Page = () => {
                                 <input
                                     className="p-2 w-full rounded-[8px] border"
                                     type="text"
-                                    {...register("firstName", {required: "First Name is required"})}
+                                    {...register("firstname", {required: "First Name is required"})}
                                     placeholder="Enter your name"
                                 />
                             </div>
@@ -60,7 +54,7 @@ const Page = () => {
                                 <input
                                     className="p-2 w-full rounded-[8px] border"
                                     type="text"
-                                    {...register("lastName", {required: "Last Name is required"})}
+                                    {...register("lastname", {required: "Last Name is required"})}
                                     placeholder="Enter your name"
                                 />
                             </div>

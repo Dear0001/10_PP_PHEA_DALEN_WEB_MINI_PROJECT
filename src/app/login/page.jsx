@@ -23,11 +23,12 @@ const LoginPage = () => {
             ...newUserInfo
         })
         console.log("res login", res)
-        if(res.ok){
-            router.push("/dashboard");
-            router.refresh()
-        }
+        // if(res.ok){
+        //     router.push("/dashboard");
+        //     router.refresh()
+        // }
     }
+    //define visibility password
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -74,8 +75,7 @@ const LoginPage = () => {
                             className="bg-[#002D74] text-white py-2 rounded-[8px] hover:scale-105 duration-300 hover:bg-[#206ab1] font-medium"
                             type="submit">Login
                         </button>
-                        <p className="text-[#D3D3D3]">Didn't have an account yet? <Link href={"/register"}
-                                                                                        className="text-blue-500">Register</Link>
+                        <p className="text-[#D3D3D3]">Didn't have an account yet? <Link href={"/register"} className="text-blue-500">Register</Link>
                         </p>
 
                     </form>

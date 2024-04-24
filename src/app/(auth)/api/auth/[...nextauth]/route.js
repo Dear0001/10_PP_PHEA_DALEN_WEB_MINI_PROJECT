@@ -1,6 +1,7 @@
 import nextAuth from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginService } from "@/services/auth.service";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export const authOptions = {
     providers: [
@@ -10,7 +11,7 @@ export const authOptions = {
                 const { email, password } = credentials;
                 const login = await loginService({ email, password });
                 console.log("Login: ", login);
-                return login.payload; // Assuming payload contains user info
+                return login;
             },
         })
     ],
@@ -22,7 +23,7 @@ export const authOptions = {
         async session({ token, user }) {
             return { user, ...token };
         }
-    }
+    },
 }
 
 const handler = nextAuth(authOptions);

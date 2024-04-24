@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ListBoardComponentHeader() {
   return (
-    <>
+    <div className={"px-10"}>
       <div className="text-gray flex text-lg gap-3 mb-5">
         <p>Workspace</p> / <p>HRD Design</p> / <p>List</p>
       </div>
@@ -18,6 +18,6 @@ export default function ListBoardComponentHeader() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
