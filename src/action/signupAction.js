@@ -1,6 +1,6 @@
 "use server";
 
-import {registerService} from "@/services/registerService";
+import {registerService} from "@/services/register.service";
 
 export default async function signupAction(currentState) {
     const newUser = {
@@ -10,6 +10,5 @@ export default async function signupAction(currentState) {
         email: currentState.email,
         password: currentState.password
     };
-    console.log("test:", newUser)
     await registerService(newUser);
 }

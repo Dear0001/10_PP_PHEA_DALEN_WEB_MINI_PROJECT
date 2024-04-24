@@ -7,7 +7,6 @@ export const loginService = async (userInfo) => {
         body: JSON.stringify(userInfo),
     })
     const userData = await res.json()
-    console.log("hrllo: ",userData);
     return userData;
 
 }

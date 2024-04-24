@@ -2,12 +2,9 @@
 import React from 'react';
 import {useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
-import Logo from "../../../public/assets/icons/logo.svg";
-import ImgSignUp from "../../../public/assets/icons/sign-up.svg";
 import Link from "next/link";
 import signupAction from "@/action/signupAction";
 import { useRouter } from "next/navigation";
-
 const Page = () => {
     const router = useRouter();
     const {
@@ -17,7 +14,6 @@ const Page = () => {
     } = useForm();
 
     const handleUserRegister = async (data) => {
-        console.log(data);
         await signupAction(data);
         router.push("/login");
     };
@@ -31,7 +27,7 @@ const Page = () => {
                         <Image
                             width={175}
                             height={110}
-                            src={Logo}
+                            src={"assets/icons/logo.svg"}
                             alt="logo"
                         />
                     </div>
@@ -129,7 +125,7 @@ const Page = () => {
                     <Image className="rounded-2xl"
                            width={400}
                            height={500}
-                           src={ImgSignUp}
+                           src={"assets/icons/sign-up.svg"}
                            alt="login form image"/>
                 </div>
             </div>

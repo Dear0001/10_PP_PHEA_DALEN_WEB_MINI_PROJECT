@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 export default function middleware(request) {
     const token = request.cookies.get("next-auth.session-token")?.value;
-    console.log("Token : ", token);
     const path = request.nextUrl.pathname;
 
     if (!token && path !== "/login") {
@@ -10,4 +9,4 @@ export default function middleware(request) {
     }
 }
 
-export const config = { matcher: ["/dashboard"] };
+export const config = { matcher: ["/todos"] };

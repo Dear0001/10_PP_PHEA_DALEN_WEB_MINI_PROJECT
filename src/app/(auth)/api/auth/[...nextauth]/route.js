@@ -1,29 +1,40 @@
-import nextAuth from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
-import { loginService } from "@/services/auth.service";
+import { loginService } from "@/services/login.service";
+import NextAuth from "next-auth";
 
 export const authOptions = {
+
     providers: [
         //login by email and password
         CredentialsProvider({
             async authorize(credentials) {
                 const { email, password } = credentials;
                 const login = await loginService({ email, password });
-                console.log("Login: ", login);
+                if (login?.status === 400) {
+                    throw new Error(login);
+                }
                 return login;
             },
         })
     ],
-    //use to set token into cookies
-    callbacks: {
-        async jwt({ token, user }) {
-            return { ...token, user };
-        },
-        async session({ token, user }) {
-            return { user, ...token };
-        }
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
     },
-}
+    pages: {
+        signIn: "/login",
+    },
 
-const handler = nextAuth(authOptions);
-export { handler as GET, handler as POST };
+    callbacks: {
+        async jwt({token, user}) {
+            return {...token, ...user};
+        },
+        async session({session, token}) {
+            session.user = token;
+            return session;
+        },
+    },
+};
+
+const handler = NextAuth(authOptions);
+export {handler as GET, handler as POST};

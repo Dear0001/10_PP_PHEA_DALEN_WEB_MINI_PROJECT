@@ -1,9 +1,7 @@
 "use client"
 import React, {useState} from 'react';
 import Image from "next/image";
-import Logo from "../../../public/assets/icons/logo.svg";
 import Link from "next/link";
-import ImgLogin from "../../../public/assets/icons/login.svg";
 import {signIn} from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -22,10 +20,8 @@ const LoginPage = () => {
             redirect: false,
             ...newUserInfo
         })
-        console.log("res login", res)
         if(res.ok){
-            console.log("res login", res)
-            router.push("/dashboard")
+            router.push("/todos")
         }
     }
     //define visibility password
@@ -41,7 +37,7 @@ const LoginPage = () => {
                 <Image
                     width={175}
                     height={110}
-                    src={Logo}
+                    src={"assets/icons/logo.svg"}
                     alt="logo"
                 />
             </div>
@@ -106,7 +102,7 @@ const LoginPage = () => {
                     <Image className="rounded-2xl"
                            width={400}
                            height={500}
-                           src={ImgLogin}
+                           src={"assets/icons/login.svg"}
                            alt="login form image"/>
                 </div>
             </div>

@@ -1,8 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import EditDeleteDropDownComponent from "./EditDeleteDropDownComponent";
+import {getAllTaskService} from "@/services/task.server";
 
-export default function TodoCardComponent() {
+export default async function TodoCardComponent() {
+    const task = await getAllTaskService();
+    console.log(task);
   return (
     <div className="border border-gray rounded-lg w-todoCardWidth mt-5 relative">
       <div className="p-5">
