@@ -23,10 +23,9 @@ const LoginPage = () => {
             ...newUserInfo
         })
         console.log("res login", res)
-        // if(res.ok){
-        //     router.push("/dashboard");
-        //     router.refresh()
-        // }
+        if(res.ok){
+            console.log("res login", res)
+        }
     }
     //define visibility password
     const [showPassword, setShowPassword] = useState(false);

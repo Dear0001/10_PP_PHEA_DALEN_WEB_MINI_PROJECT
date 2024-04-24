@@ -6,8 +6,10 @@ import Logo from "../../../public/assets/icons/logo.svg";
 import ImgSignUp from "../../../public/assets/icons/sign-up.svg";
 import Link from "next/link";
 import signupAction from "@/action/signupAction";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+    const router = useRouter();
     const {
         handleSubmit,
         formState: {errors},
@@ -17,6 +19,7 @@ const Page = () => {
     const handleUserRegister = async (data) => {
         console.log(data);
         await signupAction(data);
+        router.push("/login");
     };
 
 
